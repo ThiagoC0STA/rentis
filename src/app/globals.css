@@ -3,31 +3,52 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+  --light-green: #cef5e3;
+  --primary-green: #00ba9f;
+  --dark-green: #068f8f;
+  --dark-green-button: #0DA399;
+  --background-body: #fbfbfb;
+  --text-color: #383a41;
+  --blue-text-color: #383a41;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background-color: var(--background-body);
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+* {
+  color: var(--text-color);
+  font-family: 'Nunito', sans-serif;
+}
+
+.button-pattern-1 {
+  padding: 8px 24px;
+  height: 40px;
+  font-size: 16px;
+  background-color: var(--light-green);
+  color: var(--dark-green);
+}
+
+.button-pattern-2 {
+  padding: 6px 24px;
+  height: 40px;
+  font-size: 16px;
+  background-color: var(--dark-green-button);
+  color: #fff;
+
+  span {
+    font-size: 30px;
   }
+}
+
+.white-text {
+  color: #fff !important;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 300,
+  'GRAD' 0,
+  'opsz' 24
 }
