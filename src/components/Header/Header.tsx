@@ -9,7 +9,7 @@ config.autoAddCss = false;
 export default function Header() {
   return (
     <header className="h-[92px] bg-[var(--dark-green)] gap-6 border-b-[12px] border-[var(--primary-green)] justify-around flex items-center px-[50px] py-8">
-      <Image src="/Brand-Rentis.svg" alt="My Image" width={50} height={50} />
+      <Image src="/Brand-Rentis.svg" alt="My Image" quality={100} width={50} height={50} />
 
       <nav className="flex gap-12 flex-1 justify-start ml-4">
         <a className="white-text" href="/">
