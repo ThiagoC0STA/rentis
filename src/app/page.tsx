@@ -67,6 +67,7 @@ export default function Home() {
       <div className="w-full h-[200px] sm:h-[350px] relative mb-6">
         <Image
           src="/caroussel.png"
+          priority
           alt="Banner"
           fill
           quality={100}
