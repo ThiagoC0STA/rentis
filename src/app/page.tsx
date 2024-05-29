@@ -64,7 +64,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="w-full h-[200px] sm:h-[350px] relative mb-6">
+      <div className="w-full h-[200px] sm:h-[350px] relative mb-6 hidden md:block">
         <Image
           src="/caroussel.png"
           priority
@@ -76,10 +76,10 @@ export default function Home() {
       </div>
 
       <div className="flex flex-col lg:flex-row w-full mt-4">
-        <div className="w-full flex lg:hidden justify-end mb-4">
+        <div className="w-full flex lg:hidden justify-end ">
           <button
             onClick={toggleModal}
-            className="p-2 bg-primary-green text-white rounded"
+            className="p-2 bg-[var(--primary-green)] text-white rounded"
           >
             Filtrar
           </button>
