@@ -1,3 +1,4 @@
+/* styles/globals.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -9,7 +10,6 @@
   font-family: "Nunito", sans-serif;
 }
 
-
 :root {
   --light-green: #cef5e3;
   --primary-green: #00ba9f;
@@ -19,8 +19,6 @@
   --text-color: #383a41;
   --blue-text-color: #383a41;
 }
-
-
 
 body {
   background-color: var(--background-body);
@@ -37,6 +35,10 @@ h6,
 a {
   color: var(--text-color);
   font-family: "Nunito", sans-serif;
+}
+
+img {
+  object-fit: contain !important;
 }
 
 .button-pattern-1 {
