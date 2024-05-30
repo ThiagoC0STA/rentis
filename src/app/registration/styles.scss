@@ -1,0 +1,59 @@
+// styles.scss
+
+:root {
+  --primary-green: #00ba9f;
+  --dark-green: #068f8f;
+  --text-color: #383a41;
+  --danger: #e74c3c;
+}
+
+.iconDiv {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.material-symbols-outlined.icon {
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: var(--primary-green);
+}
+
+.input-default {
+  .MuiOutlinedInput-root {
+    fieldset {
+      border-color: var(--text-color);
+    }
+    &:hover fieldset {
+      border-color: var(--text-color);
+    }
+    &.Mui-focused fieldset {
+      border-color: var(--primary-green);
+    }
+  }
+
+  &.error {
+    .MuiOutlinedInput-root {
+      fieldset {
+        border-color: var(--danger) !important;
+      }
+      &:hover fieldset {
+        border-color: var(--danger) !important;
+      }
+      &.Mui-focused fieldset {
+        border-color: var(--danger) !important;
+      }
+    }
+    label {
+      color: var(--danger) !important;
+    }
+  }
+}
+
+button {
+  display: flex;
+  align-items: center;
+}
+
+button svg {
+  margin-right: 4px;
+}

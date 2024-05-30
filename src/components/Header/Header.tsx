@@ -5,13 +5,13 @@ import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { config } from "@fortawesome/fontawesome-svg-core";
-import { useRouter } from 'next/navigation'
+import { useRouter } from "next/navigation";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 config.autoAddCss = false;
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const {push} = useRouter()
+  const { push } = useRouter();
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -59,8 +59,16 @@ export default function Header() {
         </nav>
 
         <div className="hidden md:flex gap-2 items-center">
-          <button className="button-pattern-1">Cadastre-se</button>
-          <button onClick={() =>  push('/login')} className="button-pattern-2 flex items-center gap-[2px]">
+          <button
+            onClick={() => push("/registration")}
+            className="button-pattern-1"
+          >
+            Cadastre-se
+          </button>
+          <button
+            onClick={() => push("/login")}
+            className="button-pattern-2 flex items-center gap-[2px]"
+          >
             <span className="material-symbols-outlined white-text">person</span>{" "}
             ENTRAR
           </button>

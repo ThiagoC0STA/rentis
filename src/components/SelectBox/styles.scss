@@ -1,0 +1,9 @@
+.select-box {
+  min-width: 250px;
+
+  svg,
+  path {
+    color: var(--text-color) !important;
+    fill: var(--text-color) !important;
+  }
+}

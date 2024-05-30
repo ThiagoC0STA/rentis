@@ -1,6 +1,7 @@
 "use client";
 
 import TextFieldCustom from "@/components/TextFieldCustom/TextFieldCustom";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 export default function LoginPage() {
@@ -8,6 +9,7 @@ export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [forgotEmail, setForgotEmail] = useState("");
+  const { push } = useRouter();
 
   const handleForgotPassword = () => {
     setIsForgotPassword(!isForgotPassword);
@@ -75,6 +77,7 @@ export default function LoginPage() {
                 <button
                   className="bg-gray-500 hover:bg-gray-700 transition text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full mt-4"
                   type="button"
+                  onClick={() => push("/registration")}
                 >
                   Cadastre-se
                 </button>
@@ -89,7 +92,10 @@ export default function LoginPage() {
               onClick={handleForgotPassword}
             >
               <span className="material-symbols-outlined">chevron_left</span>
-              <p className="text-[var(--primary-green)] text-xs -ml-1"> Voltar ao login</p>
+              <p className="text-[var(--primary-green)] text-xs -ml-1">
+                {" "}
+                Voltar ao login
+              </p>
             </button>
             <h2 className="text-2xl font-bold mb-4 text-center">
               Recuperar Senha
