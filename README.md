@@ -10,8 +10,8 @@ Notion: https://rblima.notion.site/Rentis-English-cae6c90621f9478ab26412509fccfc
 
 ## TO DO (primeira parte do projeto)
 
-[] Home
-[] Search result
+[x] Home
+[x] Search result
 [] Registration
 [] Modal validation whatsapp
 [] Form item advertisement registration

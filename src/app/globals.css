@@ -18,6 +18,10 @@
   --background-body: #fbfbfb;
   --text-color: #383a41;
   --blue-text-color: #383a41;
+  --grey-border-light: #cad1d4;
+  --danger: #dd2424;
+  --warning: #b98108;
+  --success: #1ea564;
 }
 
 body {
@@ -93,4 +97,51 @@ footer li {
 
 footer ul {
   margin-top: -4px;
+}
+
+.input-default {
+  .MuiOutlinedInput-root {
+    fieldset {
+      border-color: var(--text-color);
+    }
+    &:hover fieldset {
+      border-color: var(--text-color);
+    }
+    &.Mui-focused fieldset {
+      border-color: var(--primary-green);
+    }
+  }
+
+  
+}
+.MuiInputBase-root,
+.MuiOutlinedInput-root {
+  height: 48px !important;
+}
+
+.MuiInputBase-input-MuiOutlinedInput-input,
+.MuiInputBase-input-MuiOutlinedInput-input,
+.MuiInputBase-input {
+  padding: 12px 14px !important;
+}
+
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: var(--primary-green) !important;
+  border-width: 2px !important;
+}
+
+.MuiOutlinedInput-notchedOutline {
+  border: 1px solid var(--grey-border-light) !important;
+}
+
+.MuiInputBase-input-MuiOutlinedInput-input,
+.MuiFormLabel-root-MuiInputLabel-root,
+.MuiInputBase-input {
+  color: var(--text-color) !important;
+
+  svg,
+  button,
+  .MuiTypography-root-MuiDayCalendar-weekDayLabel {
+    color: var(--text-color) !important;
+  }
 }

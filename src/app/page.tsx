@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
@@ -22,6 +22,8 @@ const categorias = [
 export default function Home() {
   const [selectedFilter, setSelectedFilter] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isBannerVisible, setIsBannerVisible] = useState(true);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     Modal.setAppElement("#__next");
@@ -29,57 +31,71 @@ export default function Home() {
 
   const handleFilterClick = (categoria: any) => {
     setSelectedFilter(categoria);
-    setIsModalOpen(false); // Fechar modal após selecionar
+    setIsModalOpen(false);
   };
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
 
+  const handleSearch = (e: any) => {
+    e.preventDefault();
+    setIsBannerVisible(false);
+  };
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between px-4 py-12 sm:px-24">
       <div className="w-full flex items-center mb-6">
         <div className="relative w-full">
-          <input
-            type="text"
-            placeholder="Buscar..."
-            className="w-full p-3 pl-10 bg-white shadow rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-green"
-          />
-          <div className="absolute left-3 top-1/2 transform -translate-y-1/2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 text-gray-400"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+          <form onSubmit={handleSearch}>
+            <input
+              type="text"
+              placeholder="Buscar..."
+              className="w-full p-3 pl-10 bg-white shadow rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-green"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+            <button
+              type="submit"
+              className="absolute right-3 top-1/2 transform -translate-y-1/2"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-              />
-            </svg>
-          </div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6 text-gray-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
+              </svg>
+            </button>
+          </form>
         </div>
       </div>
 
-      <div className="w-full h-[200px] sm:h-[350px] relative mb-6 hidden md:block">
-        <Image
-          src="/caroussel.png"
-          priority
-          alt="Banner"
-          fill
-          quality={100}
-          className="rounded"
-        />
-      </div>
+      {isBannerVisible && (
+        <div className="w-full h-[200px] sm:h-[350px] relative mb-6">
+          <Image
+            src="/caroussel.png"
+            priority
+            alt="Banner"
+            fill
+            quality={100}
+            className="rounded"
+          />
+        </div>
+      )}
 
       <div className="flex flex-col lg:flex-row w-full mt-4">
-        <div className="w-full flex lg:hidden justify-end ">
+        <div className="w-full flex lg:hidden justify-end mb-4">
           <button
             onClick={toggleModal}
-            className="p-2 bg-[var(--primary-green)] text-white rounded"
+            className="p-2 bg-primary-green text-white rounded"
           >
             Filtrar
           </button>
@@ -132,13 +148,13 @@ export default function Home() {
                 <p className="text-[22px] font-bold my-2">R$ 80,00/dia</p>
                 <p className="flex items-center mb-1 mt-3">
                   <span className="material-symbols-outlined mr-1 ml-[1px]">
-                    calendar_month
+                    location_on
                   </span>
                   Monte Castelo - Juiz de Fora
                 </p>
                 <p className="flex items-center mb-1">
                   <span className="material-symbols-outlined mr-1">
-                    location_on
+                    calendar_month
                   </span>
                   Datas Flexíveis
                 </p>

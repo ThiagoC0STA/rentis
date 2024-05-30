@@ -1,0 +1,17 @@
+.iconDiv {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  position: relative;
+  width: 100%;
+
+  .icon {
+    position: absolute;
+    right: 20px;
+    font-size: 18px;
+    margin-top: 5px;
+    cursor: pointer;
+    user-select: none;
+    font-size: 20px;
+  }
+}
