@@ -4,10 +4,14 @@ import React, { useState } from "react";
 import TextFieldCustom from "@/components/TextFieldCustom/TextFieldCustom";
 import SelectBox from "@/components/SelectBox/SelectBox";
 import axios from "axios";
+import Modal from "react-modal";
+import DatePickerValue from "@/components/InputData/InputData";
 
 export default function RegistrationPage() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [showPasswordSecond, setShowPasswordSecond] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [verificationCode, setVerificationCode] = useState<string>("");
 
   const [formData, setFormData] = useState({
     fullName: "",
@@ -57,15 +61,20 @@ export default function RegistrationPage() {
 
   const handleSubmit = (event: any) => {
     event.preventDefault();
-    axios
-      .post("/usuario", formData)
-      .then((response) => {
-        const userId = response.data.id;
-        console.log("User ID:", userId);
-      })
-      .catch((error) => {
-        console.error("Erro ao enviar dados:", error);
-      });
+    setIsModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleResendCode = () => {
+    console.log("Código reenviado");
+  };
+
+  const handleVerifyCode = () => {
+    console.log("Código verificado:", verificationCode);
+    setIsModalOpen(false);
   };
 
   return (
@@ -99,16 +108,17 @@ export default function RegistrationPage() {
                 value={formData.cpf}
                 onChange={(val: any) => handleChange("cpf", val)}
                 isRequired
+                max="12"
                 maskType="cpf"
               />
             </div>
-            <div>
-              <TextFieldCustom
-                label="Data de Nascimento"
+            <div className="w-full -mt-2">
+              <DatePickerValue
+                setDate={(val: any) => handleChange("dateOfBirth", val)}
+                text="Data de Nascimento"
                 value={formData.dateOfBirth}
-                onChange={(val: any) => handleChange("dateOfBirth", val)}
                 isRequired
-                maskType="date"
+                showError={false}
               />
             </div>
             <div>
@@ -131,6 +141,7 @@ export default function RegistrationPage() {
                 onChange={(val: any) => handleChange("whatsapp", val)}
                 isRequired
                 maskType="phone"
+                max="15"
               />
             </div>
             <div>
@@ -215,9 +226,7 @@ export default function RegistrationPage() {
             </div>
           </div>
           <div className="mb-10 mt-6">
-            <label className="block text-gray-700 mb-1">
-              Tipo de Endereço
-            </label>
+            <label className="block mb-2">Tipo de Endereço</label>
             <div className="flex items-center">
               <label className="mr-4 text-sm">
                 <input
@@ -286,6 +295,7 @@ export default function RegistrationPage() {
                   handleChange("passwordConfirmation", val)
                 }
                 isRequired
+                isPassword
                 iconEvent={() => setShowPasswordSecond(!showPasswordSecond)}
                 type={showPasswordSecond ? "text" : "password"}
                 icon={showPasswordSecond ? "visibility_off" : "visibility"}
@@ -322,6 +332,69 @@ export default function RegistrationPage() {
           </div>
         </form>
       </div>
+
+      <Modal
+        isOpen={isModalOpen}
+        onRequestClose={handleModalClose}
+        style={{
+          overlay: {
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            zIndex: 999,
+          },
+          content: {
+            top: "50%",
+            left: "50%",
+            right: "auto",
+            bottom: "auto",
+            marginRight: "-50%",
+            transform: "translate(-50%, -50%)",
+            width: "80%",
+            maxWidth: "600px",
+            minHeight: "200px",
+            padding: "20px",
+            borderRadius: "8px",
+            backgroundColor: "white",
+          },
+        }}
+      >
+        <div className="flex items-center mb-4">
+          <span className="material-symbols-outlined text-[var(--primary-green)] mr-1">
+            open_in_phone
+          </span>
+          <h2 className="text-xl text-left">Valide seu WhatsApp</h2>
+        </div>
+
+        <p className="text-left text-gray-700 mb-8">
+          Enviamos um código ao seu WhatsApp para validação.
+        </p>
+
+        <div className="mb-1">
+          <TextFieldCustom
+            label="Código de verificação"
+            value={verificationCode}
+            onChange={(val: any) => setVerificationCode(val)}
+            isRequired
+          />
+        </div>
+
+        <p className="text-left text-xs text-gray-700 mb-4">
+          Insira o código de 6 dígitos enviado ao seu WhatsApp.
+        </p>
+        <div className="flex items-center justify-between mb-4">
+          <button
+            className="text-[var(--primary-green)] hover:text-[var(--dark-green)] text-sm"
+            onClick={handleResendCode}
+          >
+            REENVIAR CÓDIGO
+          </button>
+          <button
+            className="bg-[var(--primary-green)] hover:bg-[var(--dark-green)] transition text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            onClick={handleVerifyCode}
+          >
+            CONTINUAR
+          </button>
+        </div>
+      </Modal>
     </div>
   );
 }

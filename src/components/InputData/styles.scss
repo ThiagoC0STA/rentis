@@ -1,0 +1,15 @@
+label,
+input {
+  color: var(--text-color) !important;
+  -webkit-text-fill-color: var(--text-color) !important;
+}
+
+.isRequired {
+  label::after {
+    content: "*";
+    margin-left: 5px !important;
+    font-size: 20px !important;
+    color: var(--danger) !important;
+    -webkit-text-fill-color: var(--danger) !important;
+  }
+}

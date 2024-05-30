@@ -172,3 +172,47 @@ footer ul {
   color: var(--text-color) !important;
 }
 
+MuiTypography-root,
+.MuiDayCalendar-weekDayLabel {
+  color: var(--text-color);
+}
+
+.MuiInputBase-input-MuiOutlinedInput-input,
+.MuiFormLabel-root-MuiInputLabel-root,
+.MuiInputBase-input {
+  color: var(--text-color) !important;
+
+  svg,
+  button,
+  .MuiTypography-root-MuiDayCalendar-weekDayLabel {
+    color: var(--text-color) !important;
+  }
+}
+
+.MuiTouchRipple-root,
+.MuiPickersDay-root,
+.MuiPickersCalendarHeader-label {
+  color: var(--text-color) !important;
+}
+
+.MuiDayCalendar-weekContainer {
+  .Mui-selected {
+    background-color: var(--primary-color) !important;
+    color: #fff !important;
+  }
+}
+
+.MuiPickersDay-today {
+  background-color: var(--primary-green) !important;
+  color: #fff !important;
+  border: none !important;
+}
+
+
+.MuiTextField-root {
+  width: 100% !important;
+}
+
+label {
+  margin-top: -4px !important;
+}
