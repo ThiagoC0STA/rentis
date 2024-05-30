@@ -155,7 +155,7 @@ export default function SelectBox({
               <InputAdornment
                 position="end"
                 sx={{
-                  color: "var(--primary-color)",
+                  color: "var(--primary-green)",
                   marginInlineEnd: "20px",
                   cursor: "pointer",
                 }}

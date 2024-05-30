@@ -111,8 +111,6 @@ footer ul {
       border-color: var(--primary-green);
     }
   }
-
-  
 }
 .MuiInputBase-root,
 .MuiOutlinedInput-root {
@@ -145,3 +143,32 @@ footer ul {
     color: var(--text-color) !important;
   }
 }
+
+.MuiOutlinedInput-notchedOutline {
+  border: 1px solid var(--grey-border-light) !important;
+}
+
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: var(--primary-green) !important;
+  border-width: 2px !important;
+}
+
+.MuiSvgIcon-root {
+  color: var(--primary-color) !important;
+}
+
+.MuiFormLabel-root-MuiInputLabel-root.Mui-focused
+  > .MuiFormLabel-root-MuiInputLabel-root {
+  color: var(--primary-color) !important;
+}
+
+.MuiButtonBase-root,
+.MuiMenuItem-root,
+.MuiMultiSectionDigitalClockSection-item {
+  color: var(--text-color) !important;
+}
+
+.MuiInputLabel-root {
+  color: var(--text-color) !important;
+}
+

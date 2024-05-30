@@ -6,6 +6,9 @@ import SelectBox from "@/components/SelectBox/SelectBox";
 import axios from "axios";
 
 export default function RegistrationPage() {
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [showPasswordSecond, setShowPasswordSecond] = useState<boolean>(false);
+
   const [formData, setFormData] = useState({
     fullName: "",
     cpf: "",
@@ -68,18 +71,23 @@ export default function RegistrationPage() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-100 p-10">
       <div className="bg-white p-12 rounded-lg shadow-lg w-full max-w-4xl">
-        <h2 className="text-2xl text-[var(--primary-green)] font-bold mb-4 text-left">
-          Vamos começar{" "}
+        <h2 className="text-[30px] text-[var(--primary-green)] font-bold mb-4 text-left">
+          Vamos começar
         </h2>
         <form onSubmit={handleSubmit}>
-          <h3 className="text-lg font-semibold mb-1">Seus dados pessoais</h3>
+          <div className="flex items-center mb-2">
+            <span className="material-symbols-outlined text-[var(--primary-green)] mr-1">
+              person
+            </span>
+            <h3 className="text-base">Seus dados pessoais</h3>
+          </div>
           <p className="text-xs text-gray-600 font-light mb-6 text-[var(--danger)]">
-            Todos os dados são obrigatórios*
+            Todos os dados são obrigatórios
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div>
               <TextFieldCustom
-                label="Nome Completo*"
+                label="Nome Completo"
                 value={formData.fullName}
                 onChange={(val: any) => handleChange("fullName", val)}
                 isRequired
@@ -87,7 +95,7 @@ export default function RegistrationPage() {
             </div>
             <div>
               <TextFieldCustom
-                label="Informe seu CPF*"
+                label="Informe seu CPF"
                 value={formData.cpf}
                 onChange={(val: any) => handleChange("cpf", val)}
                 isRequired
@@ -96,7 +104,7 @@ export default function RegistrationPage() {
             </div>
             <div>
               <TextFieldCustom
-                label="Data de Nascimento*"
+                label="Data de Nascimento"
                 value={formData.dateOfBirth}
                 onChange={(val: any) => handleChange("dateOfBirth", val)}
                 isRequired
@@ -105,7 +113,7 @@ export default function RegistrationPage() {
             </div>
             <div>
               <SelectBox
-                label="Sexo*"
+                label="Sexo"
                 options={[
                   { key: "male", label: "Masculino" },
                   { key: "female", label: "Feminino" },
@@ -118,7 +126,7 @@ export default function RegistrationPage() {
             </div>
             <div>
               <TextFieldCustom
-                label="WhatsApp*"
+                label="WhatsApp"
                 value={formData.whatsapp}
                 onChange={(val: any) => handleChange("whatsapp", val)}
                 isRequired
@@ -127,18 +135,23 @@ export default function RegistrationPage() {
             </div>
             <div>
               <TextFieldCustom
-                label="Documento Identidade - RG/CNH/OUTROS*"
+                label="Documento Identidade - RG/CNH/OUTROS"
                 value={formData.identityDocument}
                 onChange={(val: any) => handleChange("identityDocument", val)}
                 isRequired
               />
             </div>
           </div>
-          <h3 className="text-lg font-semibold mb-4 mt-6">Endereço</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="flex items-center mb-2 mt-8">
+            <span className="material-symbols-outlined text-[var(--primary-green)] mr-1">
+              home
+            </span>
+            <h3 className="text-base">Endereço</h3>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 mt-6 gap-5">
             <div>
               <TextFieldCustom
-                label="CEP*"
+                label="CEP"
                 value={formData.postalCode}
                 onChange={(val: any) => handleChange("postalCode", val)}
                 onBlur={handlePostalCodeBlur}
@@ -148,7 +161,7 @@ export default function RegistrationPage() {
             </div>
             <div>
               <TextFieldCustom
-                label="Rua*"
+                label="Rua"
                 value={formData.street}
                 onChange={(val: any) => handleChange("street", val)}
                 disabled
@@ -156,7 +169,7 @@ export default function RegistrationPage() {
             </div>
             <div>
               <TextFieldCustom
-                label="Número*"
+                label="Número"
                 value={formData.number}
                 onChange={(val: any) => handleChange("number", val)}
                 isRequired
@@ -164,7 +177,7 @@ export default function RegistrationPage() {
             </div>
             <div>
               <TextFieldCustom
-                label="Bairro*"
+                label="Bairro"
                 value={formData.neighborhood}
                 onChange={(val: any) => handleChange("neighborhood", val)}
                 disabled
@@ -172,7 +185,7 @@ export default function RegistrationPage() {
             </div>
             <div>
               <TextFieldCustom
-                label="Cidade*"
+                label="Cidade"
                 value={formData.city}
                 onChange={(val: any) => handleChange("city", val)}
                 disabled
@@ -180,7 +193,7 @@ export default function RegistrationPage() {
             </div>
             <div>
               <TextFieldCustom
-                label="Estado*"
+                label="Estado"
                 value={formData.state}
                 onChange={(val: any) => handleChange("state", val)}
                 disabled
@@ -188,21 +201,23 @@ export default function RegistrationPage() {
             </div>
             <div>
               <TextFieldCustom
-                label="Complemento*"
+                label="Complemento"
                 value={formData.complement}
                 onChange={(val: any) => handleChange("complement", val)}
               />
             </div>
             <div>
               <TextFieldCustom
-                label="Ponto de Referência*"
+                label="Ponto de Referência"
                 value={formData.referencePoint}
                 onChange={(val: any) => handleChange("referencePoint", val)}
               />
             </div>
           </div>
           <div className="mb-10 mt-6">
-            <label className="block text-gray-700 mb-1 mt-2">Tipo de Endereço*</label>
+            <label className="block text-gray-700 mb-1">
+              Tipo de Endereço
+            </label>
             <div className="flex items-center">
               <label className="mr-4 text-sm">
                 <input
@@ -226,11 +241,16 @@ export default function RegistrationPage() {
               </label>
             </div>
           </div>
-          <h3 className="text-lg font-semibold mb-4 mt-4">Senha</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="flex items-center mb-2 mt-8">
+            <span className="material-symbols-outlined text-[var(--primary-green)] mr-1">
+              lock
+            </span>
+            <h3 className="text-base">Senha</h3>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 mt-6 gap-5">
             <div>
               <TextFieldCustom
-                label="Seu melhor e-mail*"
+                label="Seu melhor e-mail"
                 value={formData.email}
                 onChange={(val: any) => handleChange("email", val)}
                 isRequired
@@ -239,7 +259,7 @@ export default function RegistrationPage() {
             </div>
             <div>
               <TextFieldCustom
-                label="Confirme o E-mail*"
+                label="Confirme o E-mail"
                 value={formData.emailConfirmation}
                 onChange={(val: any) => handleChange("emailConfirmation", val)}
                 isRequired
@@ -248,22 +268,27 @@ export default function RegistrationPage() {
             </div>
             <div>
               <TextFieldCustom
-                label="Crie uma senha*"
+                label="Crie uma senha"
                 value={formData.password}
                 onChange={(val: any) => handleChange("password", val)}
                 isRequired
-                type="password"
+                isPassword
+                iconEvent={() => setShowPassword(!showPassword)}
+                type={showPassword ? "text" : "password"}
+                icon={showPassword ? "visibility_off" : "visibility"}
               />
             </div>
             <div>
               <TextFieldCustom
-                label="Confirme a senha*"
+                label="Confirme a senha"
                 value={formData.passwordConfirmation}
                 onChange={(val: any) =>
                   handleChange("passwordConfirmation", val)
                 }
                 isRequired
-                type="password"
+                iconEvent={() => setShowPasswordSecond(!showPasswordSecond)}
+                type={showPasswordSecond ? "text" : "password"}
+                icon={showPasswordSecond ? "visibility_off" : "visibility"}
               />
             </div>
           </div>
@@ -286,7 +311,7 @@ export default function RegistrationPage() {
               .
             </label>
           </div>
-          
+
           <div className="flex items-center justify-center mb-4">
             <button
               className="bg-[var(--primary-green)] hover:bg-[var(--dark-green)] transition text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
