@@ -28,12 +28,14 @@ const MeusAnunciosContent = () => {
     termosAceitos: false,
   });
 
+  const [garantiaTipo, setGarantiaTipo] = useState("valor");
+
   const handleChange = (key: any, value: any) => {
     setFormData({ ...formData, [key]: value });
   };
 
   return (
-    <div className="meus-anuncios-content px-10  ">
+    <div className="meus-anuncios-content md:px-10">
       <form className="new-anuncio-form">
         <section className="section pt-2">
           <div className="section-title">
@@ -128,30 +130,53 @@ const MeusAnunciosContent = () => {
             <span className="material-symbols-outlined">security</span>
             <h2>Garantia</h2>
           </div>
-          <div className="garantia-options">
-            <label>
+          <div className="garantia-options flex items-center mb-4">
+            <label className="mr-4">
               <input
                 type="radio"
                 name="garantia"
                 className="mr-2"
-                value="opcao1"
-                checked={formData.garantia === "opcao1"}
-                onChange={(e) => handleChange("garantia", e.target.value)}
+                value="valor"
+                checked={garantiaTipo === "valor"}
+                onChange={(e) => {
+                  setFormData((val) => ({
+                    ...val,
+                    garantia: "",
+                  }));
+                  setGarantiaTipo(e.target.value);
+                }}
               />
-              Opção 1 - R$ livre para digitar
+              R$
             </label>
             <label>
               <input
                 type="radio"
                 name="garantia"
                 className="mr-2 ml-4"
-                value="opcao2"
-                checked={formData.garantia === "opcao2"}
-                onChange={(e) => handleChange("garantia", e.target.value)}
+                value="porcentagem"
+                checked={garantiaTipo === "porcentagem"}
+                onChange={(e) => {
+                  setFormData((val) => ({
+                    ...val,
+                    garantia: "",
+                  }));
+                  setGarantiaTipo(e.target.value);
+                }}
               />
-              Opção 2 - % do valor do produto
+              % do valor do produto
             </label>
           </div>
+          <TextFieldCustom
+            label={
+              garantiaTipo === "valor"
+                ? "Valor da garantia"
+                : "Porcentagem da garantia"
+            }
+            value={formData.garantia}
+            onChange={(val: any) => handleChange("garantia", val)}
+            isRequired
+            maskType={garantiaTipo === "valor" ? "money" : "percentage"}
+          />
         </section>
 
         <section className="section">
@@ -178,7 +203,7 @@ const MeusAnunciosContent = () => {
               />
             </div>
           </div>
-          
+
           <div className="mt-4">
             <label className="checkbox-inline">
               <input
