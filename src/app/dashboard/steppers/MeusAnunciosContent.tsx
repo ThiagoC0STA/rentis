@@ -29,10 +29,47 @@ const MeusAnunciosContent = () => {
   });
 
   const [garantiaTipo, setGarantiaTipo] = useState("valor");
+  const [isAdding, setIsAdding] = useState(false);
 
   const handleChange = (key: any, value: any) => {
     setFormData({ ...formData, [key]: value });
   };
+
+  const anuncios = [
+    { id: 1, title: "Anúncio 1", description: "Descrição do anúncio 1" },
+    { id: 2, title: "Anúncio 2", description: "Descrição do anúncio 2" },
+    { id: 3, title: "Anúncio 3", description: "Descrição do anúncio 3" },
+  ];
+
+  const handleAddNew = () => {
+    setIsAdding(true);
+  };
+
+  const handleCancel = () => {
+    setIsAdding(false);
+  };
+
+  if (!isAdding) {
+    return (
+      <div className="listagem-anuncios">
+        <div className="anuncios-list">
+          <div
+            className="card new-anuncio-card"
+            onClick={handleAddNew}
+            style={{ backgroundColor: "rgba(0, 128, 0, 0.1)" }}
+          >
+            <h3>Adicionar Novo Anúncio</h3>
+          </div>
+          {anuncios.map((anuncio) => (
+            <div key={anuncio.id} className="card anuncio-card">
+              <h3>{anuncio.title}</h3>
+              <p>{anuncio.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="meus-anuncios-content md:px-10">
@@ -139,7 +176,7 @@ const MeusAnunciosContent = () => {
                 value="valor"
                 checked={garantiaTipo === "valor"}
                 onChange={(e) => {
-                  setFormData((val) => ({
+                  setFormData((val: any) => ({
                     ...val,
                     garantia: "",
                   }));
@@ -156,7 +193,7 @@ const MeusAnunciosContent = () => {
                 value="porcentagem"
                 checked={garantiaTipo === "porcentagem"}
                 onChange={(e) => {
-                  setFormData((val) => ({
+                  setFormData((val: any) => ({
                     ...val,
                     garantia: "",
                   }));
@@ -294,7 +331,11 @@ const MeusAnunciosContent = () => {
             </label>
           </div>
           <div className="actions">
-            <button type="button" className="cancel-button">
+            <button
+              type="button"
+              className="cancel-button"
+              onClick={handleCancel}
+            >
               CANCELAR
             </button>
             <button type="submit" className="submit-button">

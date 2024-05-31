@@ -253,3 +253,20 @@
     flex-direction: column;
   }
 }
+
+.anuncios-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.card {
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.new-anuncio-card {
+  background-color: rgba(0, 128, 0, 0.1);
+}

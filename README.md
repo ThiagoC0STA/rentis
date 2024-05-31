@@ -16,7 +16,7 @@ Notion: https://rblima.notion.site/Rentis-English-cae6c90621f9478ab26412509fccfc
 [x] Modal validation whatsapp
 [] Form item advertisement registration
 [] Checkout
-[] My ads
+[z] My ads
 [] My rentals
 [] My information
 [] Register conditions
