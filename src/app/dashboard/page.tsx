@@ -4,6 +4,13 @@ import React, { useState } from "react";
 import "./styles.scss";
 import Image from "next/image";
 import { Divider } from "@mui/material";
+import ResumoContent from "./steppers/ResumoContent";
+import MeusAnunciosContent from "./steppers/MeusAnunciosContent";
+import AlugueisContent from "./steppers/AlugueisContent";
+import CarteiraContent from "./steppers/CarteiraContent";
+import EnderecoContent from "./steppers/EnderecoContent";
+import MeusDadosContent from "./steppers/MeusDadosContent";
+import SuporteContent from "./steppers/SuporteContent";
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState("Resumo");
@@ -11,21 +18,21 @@ const Dashboard = () => {
   const renderContent = () => {
     switch (activeTab) {
       case "Resumo":
-        return <div>Resumo Content</div>;
+        return <ResumoContent />;
       case "Meus Anúncios":
-        return <div>Meus Anúncios Content</div>;
+        return <MeusAnunciosContent />;
       case "Aluguéis":
-        return <div>Aluguéis Content</div>;
+        return <AlugueisContent />;
       case "Carteira":
-        return <div>Carteira Content</div>;
+        return <CarteiraContent />;
       case "Endereço":
-        return <div>Endereço Content</div>;
+        return <EnderecoContent />;
       case "Meus Dados":
-        return <div>Meus Dados Content</div>;
+        return <MeusDadosContent />;
       case "Suporte":
-        return <div>Suporte Content</div>;
+        return <SuporteContent />;
       default:
-        return <div>Resumo Content</div>;
+        return <ResumoContent />;
     }
   };
 
