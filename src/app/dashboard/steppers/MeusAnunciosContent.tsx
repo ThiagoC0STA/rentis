@@ -51,7 +51,7 @@ const MeusAnunciosContent = () => {
 
   if (!isAdding) {
     return (
-      <div className="listagem-anuncios">
+      <div className="listagem-anuncios md:px-">
         <div className="anuncios-list">
           <div
             className="card new-anuncio-card"

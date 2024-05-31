@@ -270,3 +270,134 @@
 .new-anuncio-card {
   background-color: rgba(0, 128, 0, 0.1);
 }
+
+
+.carteira-content {
+  padding: 10px;
+}
+
+.anuncios-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: white;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-content h3 {
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.anuncio-imagem {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 10px;
+  align-self: center;
+  position: relative;
+}
+
+.card-content .data,
+.card-content .disponibilidade,
+.card-content .periodo,
+.card-content .valor-categoria,
+.card-content .local,
+.card-content .informacoes {
+  font-size: 0.875rem;
+  margin: 5px 0;
+}
+
+.card-content .data .material-symbols-outlined,
+.card-content .local .material-symbols-outlined {
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+.card-content .valor-categoria span,
+.card-content .informacoes span {
+  font-weight: bold;
+}
+
+.card-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.edit-button,
+.delete-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #007bff;
+  font-size: 0.875rem;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #4caf50;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #4caf50;
+}
+
+input:checked + .slider:before {
+  transform: translateX(18px);
+}
+
+.slider.green {
+  background-color: #4caf50;
+}
+
+.slider.red {
+  background-color: #f44336;
+}
