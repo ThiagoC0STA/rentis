@@ -7,16 +7,7 @@ import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 import { useState } from "react";
 
 const getApiUrl = () => {
-  if (typeof window !== "undefined") {
-    switch (window.location.host) {
-      case "dev.360erp.com.br":
-        return "https://api-dev.360erp.com.br";
-      case "app.360erp.com.br":
-        return "https://api-prd.360smarttrade.com.br";
-      default:
-        return "https://api-dev.360erp.com.br";
-    }
-  }
+  return "";
 };
 
 const baseURL = getApiUrl();
