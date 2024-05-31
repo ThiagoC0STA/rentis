@@ -31,12 +31,13 @@ export default function Header() {
 
   return (
     <>
-      <header className="h-[92px] bg-[var(--dark-green)] gap-6 border-b-[12px] border-[var(--primary-green)] flex justify-between items-center px-4 md:px-[50px] py-8">
+      <header className="h-[92px] bg-[var(--dark-green)] cursor-pointer gap-6 border-b-[12px] border-[var(--primary-green)] flex justify-between items-center px-4 md:px-[50px] py-8">
         <Image
           src="/Brand-Rentis.svg"
           alt="My Image"
           quality={100}
           width={50}
+          onClick={() => push("/")}
           height={50}
         />
 

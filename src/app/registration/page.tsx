@@ -6,12 +6,16 @@ import SelectBox from "@/components/SelectBox/SelectBox";
 import axios from "axios";
 import Modal from "react-modal";
 import DatePickerValue from "@/components/InputData/InputData";
+import { useRouter } from "next/navigation";
 
 export default function RegistrationPage() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [showPasswordSecond, setShowPasswordSecond] = useState<boolean>(false);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isSecondModalOpen, setIsSecondModalOpen] = useState<boolean>(false);
+  const [isThirdModalOpen, setIsThirdModalOpen] = useState<boolean>(false);
   const [verificationCode, setVerificationCode] = useState<string>("");
+  const { push } = useRouter();
 
   const [formData, setFormData] = useState({
     fullName: "",
@@ -75,6 +79,16 @@ export default function RegistrationPage() {
   const handleVerifyCode = () => {
     console.log("Código verificado:", verificationCode);
     setIsModalOpen(false);
+    setIsSecondModalOpen(true);
+  };
+
+  const handleSecondModalClose = () => {
+    setIsSecondModalOpen(false);
+    setIsThirdModalOpen(true);
+  };
+
+  const handleThirdModalClose = () => {
+    setIsThirdModalOpen(false);
   };
 
   return (
@@ -184,6 +198,7 @@ export default function RegistrationPage() {
                 value={formData.number}
                 onChange={(val: any) => handleChange("number", val)}
                 isRequired
+                max="4"
               />
             </div>
             <div>
@@ -309,7 +324,7 @@ export default function RegistrationPage() {
               onChange={(e) => handleChange("termsAccepted", e.target.checked)}
               className="mr-2"
             />
-            <label className="text-gray-700 text-xs">
+            <label className="text-xs">
               Ao prosseguir você concorda com os{" "}
               <a href="#" className="text-blue-500">
                 Termos de uso
@@ -349,22 +364,22 @@ export default function RegistrationPage() {
             marginRight: "-50%",
             transform: "translate(-50%, -50%)",
             width: "80%",
-            maxWidth: "600px",
-            minHeight: "200px",
+            maxWidth: "650px",
+            minHeight: "300px",
             padding: "20px",
             borderRadius: "8px",
             backgroundColor: "white",
           },
         }}
       >
-        <div className="flex items-center mb-4">
+        <div className="flex items-center mb-4 mt-2">
           <span className="material-symbols-outlined text-[var(--primary-green)] mr-1">
             open_in_phone
           </span>
           <h2 className="text-xl text-left">Valide seu WhatsApp</h2>
         </div>
 
-        <p className="text-left text-gray-700 mb-8">
+        <p className="text-left mb-8">
           Enviamos um código ao seu WhatsApp para validação.
         </p>
 
@@ -377,7 +392,7 @@ export default function RegistrationPage() {
           />
         </div>
 
-        <p className="text-left text-xs text-gray-700 mb-4">
+        <p className="text-left text-xs mb-4">
           Insira o código de 6 dígitos enviado ao seu WhatsApp.
         </p>
         <div className="flex items-center justify-between mb-4">
@@ -392,6 +407,105 @@ export default function RegistrationPage() {
             onClick={handleVerifyCode}
           >
             CONTINUAR
+          </button>
+        </div>
+      </Modal>
+
+      <Modal
+        isOpen={isSecondModalOpen}
+        onRequestClose={handleSecondModalClose}
+        style={{
+          overlay: {
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            zIndex: 999,
+          },
+          content: {
+            top: "50%",
+            left: "50%",
+            right: "auto",
+            bottom: "auto",
+            marginRight: "-50%",
+            transform: "translate(-50%, -50%)",
+            width: "80%",
+            maxWidth: "700px",
+            minHeight: "300px",
+            padding: "20px",
+            borderRadius: "8px",
+            backgroundColor: "white",
+          },
+        }}
+      >
+        <div className="flex items-center mb-4 mt-2">
+          <span className="material-symbols-outlined text-[var(--primary-green)] mr-1">
+            mail
+          </span>
+          <h2 className="text-xl text-left">Quase lá!</h2>
+        </div>
+
+        <p className="text-left font-semibold mb-6">
+          Precisamos verificar seu endereço de e-mail!
+        </p>
+
+        <p className="text-left mb-1">
+          Enviamos um e-mail para você fazer a verificação do seu usuário.
+        </p>
+
+        <p className="text-left mb-8">
+          Se não encontrar na sua caixa de entrada, procure também na sua caixa
+          de Spam.
+        </p>
+
+        <div className="flex items-center justify-end mb-4">
+          <button
+            className="bg-[var(--dark-green)] hover:bg-[var(--dark-green)] transition text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            onClick={handleSecondModalClose}
+          >
+            FINALIZAR
+          </button>
+        </div>
+      </Modal>
+
+      <Modal
+        isOpen={isThirdModalOpen}
+        onRequestClose={handleThirdModalClose}
+        style={{
+          overlay: {
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            zIndex: 999,
+          },
+          content: {
+            top: "50%",
+            left: "50%",
+            right: "auto",
+            bottom: "auto",
+            marginRight: "-50%",
+            transform: "translate(-50%, -50%)",
+            width: "80%",
+            maxWidth: "500px",
+            minHeight: "200px",
+            padding: "20px",
+            borderRadius: "8px",
+            backgroundColor: "white",
+          },
+        }}
+      >
+        <div className="flex items-center justify-center mb-8 mt-2">
+          <span className="material-symbols-outlined text-[var(--primary-green)] !text-6xl">
+            check_circle
+          </span>
+        </div>
+        <h2 className="text-xl text-center mb-8">
+          Seu e-mail foi validado com sucesso
+        </h2>
+        <div className="flex items-center justify-center mb-4">
+          <button
+            className="bg-[var(--primary-green)] hover:bg-[var(--dark-green)] transition text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            onClick={() => {
+              handleThirdModalClose();
+              push("/login");
+            }}
+          >
+            ENTRAR
           </button>
         </div>
       </Modal>
