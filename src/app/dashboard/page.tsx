@@ -54,7 +54,9 @@ const Dashboard = () => {
               <span className="material-symbols-outlined icon-size">
                 dashboard
               </span>
-              <span className="hidden md:inline">Resumo</span>
+              <span className="hidden md:inline">
+                Resumo
+              </span>
             </li>
             <li
               className={`cursor-pointer flex flex-col items-center md:flex-row md:items-start ${

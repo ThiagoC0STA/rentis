@@ -137,6 +137,8 @@
         font-size: 24px;
         color: #000;
       }
+
+      
     }
   }
 }
@@ -265,6 +267,11 @@
   border: 1px solid #e0e0e0;
   border-radius: 5px;
   cursor: pointer;
+
+  &-subtitle {
+    font-size: 20px;
+    font-weight: 700;
+  }
 }
 
 .new-anuncio-card {
