@@ -408,3 +408,18 @@ input:checked + .slider:before {
 .slider.red {
   background-color: #f44336;
 }
+
+.card-rentals {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 1rem; 
+  border: 1px solid #D4DCDF;
+  border-radius: 10px;
+  gap: 1rem; 
+  
+  @media (min-width: 768px) {
+    width: calc(33.333333% - 16px);
+    min-width: 250px;
+  }
+}
