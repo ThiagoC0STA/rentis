@@ -18,7 +18,7 @@ Notion: https://rblima.notion.site/Rentis-English-cae6c90621f9478ab26412509fccfc
 [] Checkout
 [x] My ads
 [] My rentals
-[] My information
+[x] My information
 [] Register conditions
 
 
