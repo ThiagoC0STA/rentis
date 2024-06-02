@@ -81,7 +81,7 @@ export default function AlugueisContent() {
   return (
     <>
       <div className="resumo-content">
-        <h1 className="welcome-message">Meu perfil</h1>
+        <h1 className="welcome-message">Objetos que você pegou para aluguel</h1>
         <hr className="divider" />
       </div>
       <div className="w-full flex flex-wrap gap-4">
