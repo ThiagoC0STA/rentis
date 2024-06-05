@@ -44,7 +44,7 @@ const Dashboard = () => {
         </div>
         <Divider className="hidden md:block" />
         <nav className="mt-4 flex md:block">
-          <ul className="space-y-1 text-sm flex md:flex-col flex-row justify-around w-full">
+          <ul className="text-sm flex md:flex-col flex-row justify-around w-full">
             <li
               className={`cursor-pointer flex flex-col items-center md:flex-row md:items-start ${
                 activeTab === "Resumo" ? "active" : ""

@@ -80,11 +80,7 @@ const CarteiraContent = () => {
             <div className="card-content">
               <h3>{anuncio.titulo}</h3>
               <div className="anuncio-imagem">
-                <Image
-                  src={anuncio.imagem}
-                  alt="Imagem do anúncio"
-                  fill
-                />
+                <Image src={anuncio.imagem} alt="Imagem do anúncio" height={200} width={200} />
               </div>
               <p className="data">
                 <span className="material-symbols-outlined">
@@ -110,8 +106,11 @@ const CarteiraContent = () => {
                 <span>Informações sobre danos:</span> {anuncio.informacoes}
               </p>
               <div className="card-actions">
-                <button className="edit-button">Editar</button>
-                <button className="delete-button">Excluir</button>
+                <div className="flex gap-2 items-center">
+                  <button className="edit-button">Editar</button>
+                  <button className="delete-button">Excluir</button>
+                </div>
+
                 <label className="switch">
                   <input
                     type="checkbox"
@@ -121,7 +120,7 @@ const CarteiraContent = () => {
                   <span
                     className={`slider ${anuncio.publicado ? "green" : "red"}`}
                   ></span>
-                  {anuncio.publicado ? "Publicado" : "Despublicado"}
+                  {/* {anuncio.publicado ? "Publicado" : "Despublicado"} */}
                 </label>
               </div>
             </div>
