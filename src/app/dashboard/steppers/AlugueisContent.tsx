@@ -95,9 +95,60 @@ export default function AlugueisContent() {
       damageInformation:
         "Não foca no zoom a partir de 20x. Precisa de uma lente angular",
       status: "Em Aluguel",
-      statusColor: "#285DE5",
+      statusColor: "#1179b1",
     },
-    // Add other items here...
+    {
+      name: "Câmera Nikon D780 24.5 MP Full Frame DSLR NIKON 7557 Câmera Digital Coolpix P950",
+      photo: "",
+      id: "#0000",
+      createdAt: "17/04/2024 09:00",
+      returnDate: "20/04/2024 09:00",
+      dailyValue: 10.0,
+      category: "Fotografia",
+      neighborhood: "São mateus",
+      city: "Juiz de Fora",
+      ownerName: "Rafael Brasil",
+      contact: 41992889735,
+      damageInformation:
+        "Não foca no zoom a partir de 20x. Precisa de uma lente angular",
+      status: "Em Aluguel",
+      statusColor: "#1179b1",
+    },
+    {
+      name: "Câmera Nikon D780 24.5 MP Full Frame DSLR NIKON 7557 Câmera Digital Coolpix P950",
+      photo: "",
+      id: "#0000",
+      createdAt: "17/04/2024 09:00",
+      returnDate: "20/04/2024 09:00",
+      dailyValue: 10.0,
+      category: "Fotografia",
+      neighborhood: "São mateus",
+      city: "Juiz de Fora",
+      ownerName: "Rafael Brasil",
+      contact: 41992889735,
+      damageInformation:
+        "Não foca no zoom a partir de 20x. Precisa de uma lente angular",
+      status: "Em Aluguel",
+      statusColor: "#1179b1",
+    },
+    {
+      name: "Câmera Nikon D780 24.5 MP Full Frame DSLR NIKON 7557 Câmera Digital Coolpix P950",
+      photo: "",
+      id: "#0000",
+      createdAt: "17/04/2024 09:00",
+      returnDate: "20/04/2024 09:00",
+      dailyValue: 10.0,
+      category: "Fotografia",
+      neighborhood: "São mateus",
+      city: "Juiz de Fora",
+      ownerName: "Rafael Brasil",
+      contact: 41992889735,
+      damageInformation:
+        "Não foca no zoom a partir de 20x. Precisa de uma lente angular",
+      status: "Em Aluguel",
+      statusColor: "#1179b1",
+    },
+
   ];
 
   return (
@@ -112,7 +163,7 @@ export default function AlugueisContent() {
             <span className="text-[#2E343E] text-sm font-[400]">
               {item.name}
             </span>
-            <div className="flex justify-center">
+            <div className="flex justify-center mt-4 mb-4">
               <Image
                 src="/et_picture.png"
                 alt="off-picture"
@@ -195,7 +246,7 @@ export default function AlugueisContent() {
                 </p>
               </div>
 
-              <hr className="divider" />
+              <hr className="divider mt-2" />
 
               <div className="h-4 flex items-center px-5">
                 <span
@@ -206,9 +257,9 @@ export default function AlugueisContent() {
                 </span>
               </div>
 
-              <hr className="divider" />
+              <hr className="divider mb-2" />
             </div>
-            <div className="flex gap-2 mt-2 items-center">
+            <div className="flex gap-2  items-center">
               <span className="material-symbols-outlined">add_a_photo</span>
               <span
                 className="font-[300] text-base cursor-pointer hover:font-[400]"
@@ -224,7 +275,7 @@ export default function AlugueisContent() {
               </span>
             </div>
 
-            <div className="w-full flex mt-2 justify-center">
+            <div className="w-full flex mt-3 justify-center">
               <button className="bg-transparent hover:bg-[#606368] transition text-[#606368] hover:text-white border-[#606368] border-[1px] font-bold px-4 rounded">
                 CANCELAR ALUGUEL
               </button>

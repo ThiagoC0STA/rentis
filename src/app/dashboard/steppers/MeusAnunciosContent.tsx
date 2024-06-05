@@ -58,6 +58,7 @@ const MeusAnunciosContent = () => {
             onClick={handleAddNew}
             style={{ backgroundColor: "rgba(0, 128, 0, 0.1)" }}
           >
+            <span className="material-symbols-outlined">add_box</span>
             <h3>Adicionar Novo Anúncio</h3>
           </div>
           {anuncios.map((anuncio) => (

@@ -274,6 +274,18 @@
 
 .new-anuncio-card {
   background-color: rgba(0, 128, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  border: 2px solid var(--dark-green) !important;
+  border-style: dashed !important;
+  box-shadow: none !important;
+  padding: 30px !important;
+
+  h3, span {
+    color: var(--dark-green) !important;
+  }
 }
 
 .carteira-content {
@@ -290,18 +302,20 @@
   border: 1px solid #e2e8f0;
   border-radius: 8px;
   padding: 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   background-color: white;
 }
 
 .card-content {
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 
 .card-content h3 {
   font-size: 1rem;
-  margin-bottom: 10px;
+  min-height: 70px;
+  margin-bottom: 5px;
 }
 
 .anuncio-imagem {
@@ -336,8 +350,11 @@
 .card-actions {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-top: 20px;
+  height: 100%;
+  max-height: 70px;
+  position: relative;
+  bottom: 0;
+  align-items: flex-end;
 }
 
 .edit-button,
@@ -345,7 +362,7 @@
   background-color: transparent;
   border: none;
   cursor: pointer;
-  color: #007bff;
+  color: #1da7ca;
   font-size: 0.875rem;
 }
 
