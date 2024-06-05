@@ -121,7 +121,7 @@ const CarteiraContent = () => {
                   <span
                     className={`slider ${anuncio.publicado ? "green" : "red"}`}
                   ></span>
-                  {anuncio.publicado ? "Publicado" : "Despublicado"}
+                  {/* {anuncio.publicado ? "Publicado" : "Despublicado"} */}
                 </label>
               </div>
             </div>

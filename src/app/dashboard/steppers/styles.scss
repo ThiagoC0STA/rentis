@@ -137,8 +137,6 @@
         font-size: 24px;
         color: #000;
       }
-
-      
     }
   }
 }
@@ -278,7 +276,6 @@
   background-color: rgba(0, 128, 0, 0.1);
 }
 
-
 .carteira-content {
   padding: 10px;
 }
@@ -413,13 +410,117 @@ input:checked + .slider:before {
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 1rem; 
-  border: 1px solid #D4DCDF;
+  padding: 1rem;
+  border: 1px solid #d4dcdf;
   border-radius: 10px;
-  gap: 1rem; 
-  
+  gap: 1rem;
+
   @media (min-width: 768px) {
     width: calc(33.333333% - 16px);
     min-width: 250px;
   }
+}
+
+/* modal-aluguel.css */
+.modal-overlay-aluguel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content-aluguel {
+  background: white;
+  padding: 40px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 70%;
+  text-align: left;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 767px) {
+  .modal-content-aluguel {
+    max-width: 90%;
+    padding: 20px;
+
+    p {
+      font-size: 10px !important;
+      line-height: 12px !important;
+      margin-bottom: 10px !important;
+    }
+  }
+}
+
+.modal-header-aluguel {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #ff7a00;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header-aluguel .close-button-aluguel {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.modal-description-aluguel {
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.modal-list-aluguel {
+  padding-left: 20px;
+  margin-bottom: 15px;
+}
+
+.modal-list-aluguel li {
+  margin-bottom: 10px;
+}
+
+.modal-form-aluguel {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-textarea-aluguel {
+  margin-bottom: 15px;
+  padding: 10px;
+  resize: none;
+  height: 80px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.modal-button-camera-aluguel {
+  background: white;
+  color: #285de5;
+  padding: 10px;
+  border: 2px solid #d3d3d3;
+  cursor: pointer;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-button-register-aluguel {
+  background: #2d9c8c;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
 }

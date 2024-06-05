@@ -1,12 +1,87 @@
 import { formatCurrencySecond } from "@/helpers/formaters";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
+import "./styles.scss"; // Make sure to adjust the path as necessary
+import { Divider } from "@mui/material";
 
+// Modal Component
+function Modal({ show, onClose }: any) {
+  if (!show) {
+    return null;
+  }
+
+  return (
+    <div className="modal-overlay-aluguel">
+      <div className="modal-content-aluguel">
+        <div className="modal-header-aluguel">
+          <div className="flex gap-1 items-center">
+            <span className="material-symbols-outlined">add_a_photo</span>
+            <span>Registrar Condições de entrega</span>
+          </div>
+          <button onClick={onClose} className="close-button-aluguel">
+            <span className="material-symbols-outlined">close</span>{" "}
+          </button>
+        </div>
+
+        <Divider className="mt-2 mb-4 hidden md:block" />
+
+        <p className="text-base mb-1">
+          Este é o momento que você registra as condições do objeto que entregou
+          para aluguel.
+        </p>
+        <p className="text-base mb-7">
+          Acesse a câmera do seu telefone, para registrar, ou você pode anexar
+          as fotos nas opções abaixo
+        </p>
+
+        <div className="flex gap-1 items-center mb-2">
+          <span className="material-symbols-outlined text-[#FF9A62]">info</span>
+          <p>Capture no mínimo 3 fotos de ângulos diferentes</p>
+        </div>
+
+        <div className="flex gap-1 items-center mb-4">
+          <span className="material-symbols-outlined text-[#FF9A62]">info</span>
+          <p>Recomendamos que faça isso na presença do locatário</p>
+        </div>
+
+        <div className="flex items-center gap-[2px] mt-4 mb-1">
+          <span className="material-symbols-outlined text-[var(--dark-green)] !text-lg mr-1">
+            package
+          </span>
+          <p className="text-sm font-extralight">PROPRIETÁRIO</p>
+          <span className="material-symbols-outlined !text-lg mr-[2px]">
+            arrow_right_alt
+          </span>
+          <p className="text-sm font-extralight">LOCÁRIO</p>
+        </div>
+
+        <form className="modal-form-aluguel">
+          <textarea
+            className="modal-textarea-aluguel"
+            placeholder="Descrição"
+          ></textarea>
+          <div className="foto-upload">
+            <p>Arquivos máximo de até 15MB</p>
+            <div className="upload-box mb-2">
+              <p>Selecione uma foto ou arraste e solte aqui</p>
+            </div>
+          </div>
+          <button type="submit" className="modal-button-register-aluguel">
+            REGISTRAR
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+}
+
+// Main Component
 export default function AlugueisContent() {
+  const [showModal, setShowModal] = useState(false);
+
   const valuesStatics = [
     {
-      name:
-        "Câmera Nikon D780 24.5 MP Full Frame DSLR NIKON 7557 Câmera Digital Coolpix P950",
+      name: "Câmera Nikon D780 24.5 MP Full Frame DSLR NIKON 7557 Câmera Digital Coolpix P950",
       photo: "",
       id: "#0000",
       createdAt: "17/04/2024 09:00",
@@ -22,60 +97,7 @@ export default function AlugueisContent() {
       status: "Em Aluguel",
       statusColor: "#285DE5",
     },
-    {
-      name:
-        "Câmera Nikon D780 24.5 MP Full Frame DSLR NIKON 7557 Câmera Digital Coolpix P950",
-      photo: "",
-      id: "#0000",
-      createdAt: "17/04/2024 09:00",
-      returnDate: "20/04/2024 09:00",
-      dailyValue: 10.0,
-      category: "Fotografia",
-      neighborhood: "São mateus",
-      city: "Juiz de Fora",
-      ownerName: "Rafael Brasil",
-      contact: 41992889735,
-      damageInformation:
-        "Não foca no zoom a partir de 20x. Precisa de uma lente angular",
-      status: "Em Aluguel",
-      statusColor: "#285DE5",
-    },
-    {
-      name:
-        "Câmera Nikon D780 24.5 MP Full Frame DSLR NIKON 7557 Câmera Digital Coolpix P950",
-      photo: "",
-      id: "#0000",
-      createdAt: "17/04/2024 09:00",
-      returnDate: "20/04/2024 09:00",
-      dailyValue: 10.0,
-      category: "Fotografia",
-      neighborhood: "São mateus",
-      city: "Juiz de Fora",
-      ownerName: "Rafael Brasil",
-      contact: 41992889735,
-      damageInformation:
-        "Não foca no zoom a partir de 20x. Precisa de uma lente angular",
-      status: "Em Aluguel",
-      statusColor: "#285DE5",
-    },
-    {
-      name:
-        "Câmera Nikon D780 24.5 MP Full Frame DSLR NIKON 7557 Câmera Digital Coolpix P950",
-      photo: "",
-      id: "#0000",
-      createdAt: "17/04/2024 09:00",
-      returnDate: "20/04/2024 09:00",
-      dailyValue: 10.0,
-      category: "Fotografia",
-      neighborhood: "São mateus",
-      city: "Juiz de Fora",
-      ownerName: "Rafael Brasil",
-      contact: 41992889735,
-      damageInformation:
-        "Não foca no zoom a partir de 20x. Precisa de uma lente angular",
-      status: "Em Aluguel",
-      statusColor: "#285DE5",
-    },
+    // Add other items here...
   ];
 
   return (
@@ -85,8 +107,8 @@ export default function AlugueisContent() {
         <hr className="divider" />
       </div>
       <div className="w-full flex flex-wrap gap-4">
-        {valuesStatics.map((item) => (
-          <div className="card-rentals">
+        {valuesStatics.map((item, index) => (
+          <div className="card-rentals" key={index}>
             <span className="text-[#2E343E] text-sm font-[400]">
               {item.name}
             </span>
@@ -186,16 +208,23 @@ export default function AlugueisContent() {
 
               <hr className="divider" />
             </div>
-            <div className="flex gap-2 items-center">
+            <div className="flex gap-2 mt-2 items-center">
               <span className="material-symbols-outlined">add_a_photo</span>
-              <span className="font-[300] text-base cursor-pointer hover:font-[400]">Registrar Condições</span>
+              <span
+                className="font-[300] text-base cursor-pointer hover:font-[400]"
+                onClick={() => setShowModal(true)}
+              >
+                Registrar Condições
+              </span>
             </div>
             <div className="flex gap-2 items-center">
               <span className="material-symbols-outlined">report</span>
-              <span className="font-[300] text-base cursor-pointer hover:font-[400]">Reportar mau funcionamento</span>
+              <span className="font-[300] text-base cursor-pointer hover:font-[400]">
+                Reportar mau funcionamento
+              </span>
             </div>
 
-            <div className="w-full flex justify-center">
+            <div className="w-full flex mt-2 justify-center">
               <button className="bg-transparent hover:bg-[#606368] transition text-[#606368] hover:text-white border-[#606368] border-[1px] font-bold px-4 rounded">
                 CANCELAR ALUGUEL
               </button>
@@ -203,6 +232,7 @@ export default function AlugueisContent() {
           </div>
         ))}
       </div>
+      <Modal show={showModal} onClose={() => setShowModal(false)} />
     </>
   );
 }

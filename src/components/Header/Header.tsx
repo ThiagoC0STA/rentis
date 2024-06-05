@@ -61,6 +61,13 @@ export default function Header() {
 
         <div className="hidden md:flex gap-2 items-center">
           <button
+            onClick={() => push("/dashboard")}
+            className="button-pattern-2 flex items-center gap-[4px]"
+          >
+            <span className="material-symbols-outlined white-text">grid_view</span>{" "}
+            Dashboard
+          </button>
+          <button
             onClick={() => push("/registration")}
             className="button-pattern-1"
           >
