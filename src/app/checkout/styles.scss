@@ -1,0 +1,41 @@
+.flex-wrapper {
+  display: flex;
+  width: 100%; 
+  @media (min-width: 768px) {
+    width: calc(50% - 40px); 
+  }
+  flex-direction: column; 
+  gap: 1.75rem;
+  padding-left: 2.25rem; 
+  padding-right: 2.25rem; 
+  padding-top: 3rem;
+  padding-bottom: 3rem; 
+}
+
+.flex-wrapper-content {
+  display: flex;
+  width: 100%; 
+  flex-direction: column; 
+  gap: 1.75rem;
+  padding-left: 2.25rem; 
+  padding-right: 2.25rem; 
+  padding-top: 3rem;
+  padding-bottom: 3rem; 
+}
+
+.flex-container {
+  width: 100%;
+  @media (min-width: 768px) {
+    width: calc(50% - 40px); 
+  }
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.flex-col-40 {
+  width: 100%;
+  @media (min-width: 768px) {
+    width: calc(100% - 40px); 
+  }
+}

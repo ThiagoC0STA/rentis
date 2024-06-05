@@ -45,7 +45,8 @@ export default function TextFieldCustom({
   showErrorForZero,
   inputRef,
   onEnterEvent,
-  className
+  className,
+  placeholder = ''
 }: any) {
   const [isError, setIsError] = useState<boolean>(false);
   const [currentList, setCurrentList] = useState(onCurrentList);
@@ -198,6 +199,7 @@ export default function TextFieldCustom({
         onBlur={() => handleBlur(value)}
         className={`input-default ${isError ? "error" : ""} ${className}`}
         value={value}
+        placeholder={placeholder}
         disabled={disabled}
         InputLabelProps={{ shrink: true }}
         onKeyDown={handleEnter}
