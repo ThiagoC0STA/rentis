@@ -74,7 +74,7 @@ function Checkout() {
       });
   };
   return (
-    <div className="w-full flex flex-wrap px-10 gap-10 md:px-20 lg:px-52 py-20 bg-white">
+    <div className="w-full flex flex-wrap px-10 gap-10 md:px-20 lg:px-52 py-14 bg-white">
       <div className="flex-container">
         <div className="flex-wrapper-content bg-[#F9FAFA]">
           <div>
