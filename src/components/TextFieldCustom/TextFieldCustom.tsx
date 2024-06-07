@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import {
   barDataformat,
@@ -46,7 +46,8 @@ export default function TextFieldCustom({
   inputRef,
   onEnterEvent,
   className,
-  placeholder = ''
+  placeholder = '',
+  onBlur, // Adicione a prop onBlur aqui
 }: any) {
   const [isError, setIsError] = useState<boolean>(false);
   const [currentList, setCurrentList] = useState(onCurrentList);
@@ -130,6 +131,7 @@ export default function TextFieldCustom({
 
   const handleBlur = (inputValue: string) => {
     setIsError(isRequired && !inputValue);
+    if (onBlur) onBlur(inputValue); // Chame a função onBlur passada como prop
   };
 
   useEffect(() => {

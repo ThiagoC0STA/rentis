@@ -219,3 +219,11 @@ MuiTypography-root,
 label {
   margin-top: -4px !important;
 }
+
+.MuiStack-root {
+  overflow: hidden !important;
+}
+
+.MuiStack-root>.MuiTextField-root {
+  min-width: 50px !important;
+}

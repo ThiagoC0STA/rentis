@@ -6,6 +6,8 @@ import Image from "next/image";
 import React, { useState } from "react";
 import "./styles.scss";
 import axios from "axios";
+import DatePickerValue from "@/components/InputData/InputData";
+import { fetchAddress } from "@/helpers/cepService";
 
 function Checkout() {
   const [formData, setFormData] = useState({
@@ -27,6 +29,9 @@ function Checkout() {
     complemento: "",
     pontoReferencia: "",
   });
+
+  const [dateStart, setDateStart] = useState<String>('');
+  const [dateEnd, setDateEnd] = useState<String>('');
 
   const product = {
     name:
@@ -55,12 +60,10 @@ function Checkout() {
     setFormDataAddress({ ...formDataAddress, [key]: value });
   };
 
-  const handlePostalCodeBlur = () => {
-    const { cep } = formDataAddress;
-    axios
-      .get(`https://viacep.com.br/ws/${cep}/json/`)
-      .then((response) => {
-        const { logradouro, bairro, localidade, uf } = response.data;
+  const handlePostalCodeBlur = (cep: string) => {
+    fetchAddress(cep)
+      .then((data) => {
+        const { logradouro, bairro, localidade, uf } = data;
         setFormDataAddress({
           ...formDataAddress,
           rua: logradouro,
@@ -73,6 +76,7 @@ function Checkout() {
         console.error("Erro ao buscar o endereço:", error);
       });
   };
+
   return (
     <div className="w-full flex flex-wrap px-10 gap-10 md:px-20 lg:px-52 py-14 bg-white">
       <div className="flex-container">
@@ -107,8 +111,8 @@ function Checkout() {
           <FormControl className="w-full">
             <TextFieldCustom
               label="CPF do portador do cartão"
-              value={formData.nomePortador}
-              onChange={(val: any) => handleChange("nomePortador", val)}
+              value={formData.cpfPortador}
+              onChange={(val: any) => handleChange("cpfPortador", val)}
               isRequired
               placeholder="CPF"
             />
@@ -117,8 +121,8 @@ function Checkout() {
           <FormControl className="w-full">
             <TextFieldCustom
               label="Número do Cartão"
-              value={formData.nomePortador}
-              onChange={(val: any) => handleChange("nomePortador", val)}
+              value={formData.numeroCartao}
+              onChange={(val: any) => handleChange("numeroCartao", val)}
               isRequired
               placeholder="1234  5678  9101  1121"
             />
@@ -128,16 +132,16 @@ function Checkout() {
             <FormControl className="w-full md:w-1/2">
               <TextFieldCustom
                 label="Mês de validade do cartão"
-                value={formData.nomePortador}
-                onChange={(val: any) => handleChange("nomePortador", val)}
+                value={formData.mesValidade}
+                onChange={(val: any) => handleChange("mesValidade", val)}
                 placeholder="MM/AA"
               />
             </FormControl>
             <FormControl className="w-full md:w-1/2">
               <TextFieldCustom
                 label="Ano de validade do cartão"
-                value={formData.nomePortador}
-                onChange={(val: any) => handleChange("nomePortador", val)}
+                value={formData.anoValidade}
+                onChange={(val: any) => handleChange("anoValidade", val)}
                 placeholder="MM/AA"
               />
             </FormControl>
@@ -146,8 +150,8 @@ function Checkout() {
           <FormControl className="w-full md:w-1/2">
             <TextFieldCustom
               label="Código de segurança do cartão"
-              value={formData.nomePortador}
-              onChange={(val: any) => handleChange("nomePortador", val)}
+              value={formData.codigoSeguranca}
+              onChange={(val: any) => handleChange("codigoSeguranca", val)}
               isRequired
               placeholder="CVV"
             />
@@ -190,20 +194,21 @@ function Checkout() {
           <span>Período do Aluguel</span>
           <div className="flex w-full flex-nowrap gap-7 ">
             <FormControl className="w-full md:w-1/2">
-              <TextFieldCustom
-                label=""
-                onChange={(val: any) => handleChange("profissao", val)}
-                isRequired
-              />
+              <DatePickerValue
+                  setDate={(val: any) => setDateStart(val)}
+                  text=""
+                  value={dateStart}
+                  showError={false}
+                />
             </FormControl>
 
             <FormControl className="w-full md:w-1/2">
-              <TextFieldCustom
-                label=""
-                onChange={(val: any) => handleChange("rendaMensal", val)}
-                isRequired
-                maskType="money"
-              />
+              <DatePickerValue
+                  setDate={(val: any) => setDateEnd(val)}
+                  text=""
+                  value={dateEnd}
+                  showError={false}
+                />
             </FormControl>
           </div>
         </div>
@@ -274,7 +279,7 @@ function Checkout() {
               label="CEP"
               value={formDataAddress.cep}
               onChange={(val: any) => handleChangeAddress("cep", val)}
-              onBlur={handlePostalCodeBlur}
+              onBlur={() => handlePostalCodeBlur(formDataAddress.cep)}
               maskType="cep"
               placeholder="CEP"
             />

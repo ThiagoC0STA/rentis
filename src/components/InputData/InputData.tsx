@@ -171,7 +171,7 @@ export default function DatePickerValue({
         }}
       >
         <DatePicker
-          className={`datep ${className ? className : ""} ${
+          className={`datep !overflow-hidden ${className ? className : ""} ${
             isRequired ? "isRequired" : ""
           }`}
           disabled={disabled}
