@@ -199,7 +199,8 @@ export default function MeusDadosContent() {
                   label="Conta"
                   value={formData.conta}
                   onChange={(val: any) => handleChange("conta", val)}
-                  isRequired
+                  max="4"
+                  maskType="onlyNumber"
                 />
               </FormControl>
 
@@ -208,8 +209,8 @@ export default function MeusDadosContent() {
                   label="Digito"
                   value={formData.digitoConta}
                   onChange={(val: any) => handleChange("digitoConta", val)}
-                  isRequired
-                  max={4}
+                  maskType="onlyNumber"
+                  max="1"
                 />
               </FormControl>
 
@@ -243,7 +244,8 @@ export default function MeusDadosContent() {
                   label="Agência"
                   value={formData.agencia}
                   onChange={(val: any) => handleChange("agencia", val)}
-                  isRequired
+                  max="12"
+                  maskType="onlyNumber"
                 />
               </FormControl>
 
@@ -253,7 +255,8 @@ export default function MeusDadosContent() {
                   value={formData.digitoAgencia}
                   onChange={(val: any) => handleChange("digitoAgencia", val)}
                   isRequired
-                  max={4}
+                  maskType="onlyNumber"
+                  max="1"
                 />
               </FormControl>
 

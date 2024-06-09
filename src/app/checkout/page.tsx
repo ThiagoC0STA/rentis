@@ -30,8 +30,8 @@ function Checkout() {
     pontoReferencia: "",
   });
 
-  const [dateStart, setDateStart] = useState<String>('');
-  const [dateEnd, setDateEnd] = useState<String>('');
+  const [dateStart, setDateStart] = useState<String>("");
+  const [dateEnd, setDateEnd] = useState<String>("");
 
   const product = {
     name:
@@ -195,20 +195,20 @@ function Checkout() {
           <div className="flex w-full flex-nowrap gap-7 ">
             <FormControl className="w-full md:w-1/2">
               <DatePickerValue
-                  setDate={(val: any) => setDateStart(val)}
-                  text=""
-                  value={dateStart}
-                  showError={false}
-                />
+                setDate={(val: any) => setDateStart(val)}
+                text=""
+                value={dateStart}
+                showError={false}
+              />
             </FormControl>
 
             <FormControl className="w-full md:w-1/2">
               <DatePickerValue
-                  setDate={(val: any) => setDateEnd(val)}
-                  text=""
-                  value={dateEnd}
-                  showError={false}
-                />
+                setDate={(val: any) => setDateEnd(val)}
+                text=""
+                value={dateEnd}
+                showError={false}
+              />
             </FormControl>
           </div>
         </div>
@@ -271,10 +271,10 @@ function Checkout() {
           objeto
         </span>
       </div>
-      <div className="flex-col-40 px-20 py-10 bg-[#F9FAFA] flex flex-col gap-7 rounded-[5px]">
+      <div className="flex-col-40 px-10 md:px-20 py-10 bg-[#F9FAFA] flex flex-col gap-7 rounded-[5px]">
         <h2 className="text-[#005866] font-[700] text-xl">Seu endereço</h2>
         <div className="flex flex-wrap gap-7">
-          <FormControl className="w-full md:w-1/3">
+          <FormControl className="w-full md:flex-1">
             <TextFieldCustom
               label="CEP"
               value={formDataAddress.cep}
@@ -285,7 +285,7 @@ function Checkout() {
             />
           </FormControl>
 
-          <FormControl className="w-full md:flex-1">
+          <FormControl className="w-full md:w-[55%]">
             <TextFieldCustom
               label="Rua"
               value={formDataAddress.rua}
@@ -294,47 +294,49 @@ function Checkout() {
             />
           </FormControl>
 
-          <FormControl className="w-full md:w-1/4">
+          <FormControl className="w-full md:max-w-[100px] md:w-[10%]">
             <TextFieldCustom
               label="Número"
               value={formDataAddress.numero}
               onChange={(val: any) => handleChangeAddress("numero", val)}
-              type="number"
+              maskType="onlyNumber"
               placeholder="Número"
             />
           </FormControl>
 
-          <FormControl className="w-full md:w-1/3">
-            <TextFieldCustom
-              label="Bairro"
-              value={formDataAddress.bairro}
-              onChange={(val: any) => handleChangeAddress("bairro", val)}
-              isRequired
-              placeholder="Bairro"
-            />
-          </FormControl>
+          <div className="w-full flex gap-7  flex-wrap md:flex-nowrap">
+            <FormControl className="w-full md:w-1/2">
+              <TextFieldCustom
+                label="Bairro"
+                value={formDataAddress.bairro}
+                onChange={(val: any) => handleChangeAddress("bairro", val)}
+                isRequired
+                placeholder="Bairro"
+              />
+            </FormControl>
 
-          <FormControl className="w-full md:flex-1">
-            <TextFieldCustom
-              label="Cidade"
-              value={formDataAddress.cidade}
-              onChange={(val: any) => handleChangeAddress("cidade", val)}
-              isRequired
-              placeholder="Cidade"
-            />
-          </FormControl>
+            <FormControl className="w-full md:flex-1">
+              <TextFieldCustom
+                label="Cidade"
+                value={formDataAddress.cidade}
+                onChange={(val: any) => handleChangeAddress("cidade", val)}
+                isRequired
+                placeholder="Cidade"
+              />
+            </FormControl>
 
-          <FormControl className="w-full md:w-1/4">
-            <TextFieldCustom
-              label="Estado"
-              value={formDataAddress.estado}
-              onChange={(val: any) => handleChangeAddress("estado", val)}
-              isRequired
-              placeholder="Estado"
-            />
-          </FormControl>
+            <FormControl className="w-full md:max-w-[100px] md:w-[10%]">
+              <TextFieldCustom
+                label="Estado"
+                value={formDataAddress.estado}
+                onChange={(val: any) => handleChangeAddress("estado", val)}
+                isRequired
+                placeholder="Estado"
+              />
+            </FormControl>
+          </div>
 
-          <FormControl className="w-full md:w-1/3">
+          <FormControl className="w-full md:w-1/2">
             <TextFieldCustom
               label="Complemento"
               value={formDataAddress.complemento}
