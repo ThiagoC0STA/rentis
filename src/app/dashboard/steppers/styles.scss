@@ -294,14 +294,12 @@
 
 .anuncios-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   gap: 20px;
 }
 
 .card-content {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+  flex: 1;
 }
 
 .card-content h3 {
@@ -311,10 +309,9 @@
 }
 
 .anuncio-imagem {
-  width: 200px;
-  height: 200px;
-  margin-bottom: 10px;
-  align-self: center;
+  width: 100%;
+  height: 140px;
+  margin-bottom: 25px;
   position: relative;
 }
 
@@ -342,11 +339,19 @@
 .card-actions {
   display: flex;
   justify-content: space-between;
-  height: 100%;
-  max-height: 70px;
-  position: relative;
-  bottom: 0;
-  align-items: flex-end;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.card-actions button {
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.card-actions .switch {
+  display: flex;
+  align-items: center;
 }
 
 .edit-button,
@@ -416,18 +421,19 @@ input:checked + .slider:before {
 }
 
 .card-rentals {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.07);
   display: flex;
   flex-direction: column;
-  width: 100%;
-  padding: 1rem;
-  border: 1px solid #d4dcdf;
-  border-radius: 10px;
-  gap: 1rem;
+  justify-content: space-between;
+  height: 100%;
+}
 
-  @media (min-width: 768px) {
-    width: calc(33.333333% - 16px);
-    min-width: 250px;
-  }
+.card-rentals img {
+  border-radius: 8px;
 }
 
 /* modal-aluguel.css */

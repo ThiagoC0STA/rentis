@@ -1,11 +1,15 @@
+/* eslint-disable @next/next/no-img-element */
+"use client";
+
 import { formatCurrencySecond } from "@/helpers/formaters";
 import Image from "next/image";
 import React, { useState } from "react";
-import "./styles.scss"; // Make sure to adjust the path as necessary
+import "./styles.scss";
 import { Divider } from "@mui/material";
+import { Accept, useDropzone } from "react-dropzone";
+import ItemCard from "./ItemCard";
 
-// Modal Component
-function Modal({ show, onClose }: any) {
+function Modal({ show, onClose, getRootProps, getInputProps, formData }: any) {
   if (!show) {
     return null;
   }
@@ -62,11 +66,16 @@ function Modal({ show, onClose }: any) {
           ></textarea>
           <div className="foto-upload">
             <p>Arquivos máximo de até 15MB</p>
-            <div className="upload-box mb-2">
+            <div className="upload-box" {...getRootProps()}>
+              <input {...getInputProps()} />
               <p>Selecione uma foto ou arraste e solte aqui</p>
+              {formData.fotos &&
+                formData.fotos.map((file: any) => (
+                  <Image key={file.name} src={file.preview} alt="Preview" width={80} height={80}/>
+                ))}
             </div>
           </div>
-          <button type="submit" className="modal-button-register-aluguel">
+          <button type="submit" className="modal-button-register-aluguel mt-2">
             REGISTRAR
           </button>
         </form>
@@ -78,10 +87,29 @@ function Modal({ show, onClose }: any) {
 // Main Component
 export default function AlugueisContent() {
   const [showModal, setShowModal] = useState(false);
+  const [formData, setFormData] = useState({ fotos: [] });
+
+  const handleImageDrop = (acceptedFiles: any) => {
+    setFormData({
+      ...formData,
+      fotos: acceptedFiles.map((file: any) =>
+        Object.assign(file, {
+          preview: URL.createObjectURL(file),
+        })
+      ),
+    });
+  };
+
+  const { getRootProps, getInputProps } = useDropzone({
+    accept: {
+      "image/*": [],
+    } as Accept,
+    onDrop: handleImageDrop,
+  });
 
   const valuesStatics = [
     {
-      name: "Câmera Nikon D780 24.5 MP Full Frame DSLR NIKON 7557 Câmera Digital Coolpix P950",
+      name: "Câmera Nikon D780 24.5 MP Full Frame DSLR NIKON 7557 Câmera Digital Coolpix P950",
       photo: "",
       id: "#0000",
       createdAt: "17/04/2024 09:00",
@@ -97,58 +125,6 @@ export default function AlugueisContent() {
       status: "Em Aluguel",
       statusColor: "#1179b1",
     },
-    {
-      name: "Câmera Nikon D780 24.5 MP Full Frame DSLR NIKON 7557 Câmera Digital Coolpix P950",
-      photo: "",
-      id: "#0000",
-      createdAt: "17/04/2024 09:00",
-      returnDate: "20/04/2024 09:00",
-      dailyValue: 10.0,
-      category: "Fotografia",
-      neighborhood: "São mateus",
-      city: "Juiz de Fora",
-      ownerName: "Rafael Brasil",
-      contact: 41992889735,
-      damageInformation:
-        "Não foca no zoom a partir de 20x. Precisa de uma lente angular",
-      status: "Em Aluguel",
-      statusColor: "#1179b1",
-    },
-    {
-      name: "Câmera Nikon D780 24.5 MP Full Frame DSLR NIKON 7557 Câmera Digital Coolpix P950",
-      photo: "",
-      id: "#0000",
-      createdAt: "17/04/2024 09:00",
-      returnDate: "20/04/2024 09:00",
-      dailyValue: 10.0,
-      category: "Fotografia",
-      neighborhood: "São mateus",
-      city: "Juiz de Fora",
-      ownerName: "Rafael Brasil",
-      contact: 41992889735,
-      damageInformation:
-        "Não foca no zoom a partir de 20x. Precisa de uma lente angular",
-      status: "Em Aluguel",
-      statusColor: "#1179b1",
-    },
-    {
-      name: "Câmera Nikon D780 24.5 MP Full Frame DSLR NIKON 7557 Câmera Digital Coolpix P950",
-      photo: "",
-      id: "#0000",
-      createdAt: "17/04/2024 09:00",
-      returnDate: "20/04/2024 09:00",
-      dailyValue: 10.0,
-      category: "Fotografia",
-      neighborhood: "São mateus",
-      city: "Juiz de Fora",
-      ownerName: "Rafael Brasil",
-      contact: 41992889735,
-      damageInformation:
-        "Não foca no zoom a partir de 20x. Precisa de uma lente angular",
-      status: "Em Aluguel",
-      statusColor: "#1179b1",
-    },
-
   ];
 
   return (
@@ -157,133 +133,25 @@ export default function AlugueisContent() {
         <h1 className="welcome-message">Objetos que você pegou para aluguel</h1>
         <hr className="divider" />
       </div>
-      <div className="w-full flex flex-wrap gap-4">
+      <div className="w-full flex flex-wrap gap-4 anuncios-grid">
         {valuesStatics.map((item, index) => (
-          <div className="card-rentals" key={index}>
-            <span className="text-[#2E343E] text-sm font-[400]">
-              {item.name}
-            </span>
-            <div className="flex justify-center mt-4 mb-4">
-              <Image
-                src="/et_picture.png"
-                alt="off-picture"
-                width={100}
-                height={100}
-              ></Image>
-            </div>
-            <span className="text-[#091E42] font-[600] text-xl">
-              Aluguel: {item.id}
-            </span>
-            <div className="flex flex-wrap gap-y-4">
-              <div className="flex flex-col gap-1 w-1/2">
-                <span className="font-[700] text-xs text-[#091E42]">
-                  Início:
-                </span>
-                <p className="text-[#6C6C6C] font-[400] text-sm">
-                  {item.createdAt}
-                </p>
-              </div>
-              <div className="flex flex-col gap-1 w-1/2">
-                <span className="font-[700] text-xs text-[#091E42]">
-                  Devolução:
-                </span>
-                <p className="text-[#6C6C6C] font-[400] text-sm">
-                  {item.returnDate}
-                </p>
-              </div>
-              <div className="flex flex-col gap-1 w-1/2">
-                <span className="font-[700] text-xs text-[#091E42]">
-                  Valor diária:
-                </span>
-                <p className="text-[#6C6C6C] font-[400] text-sm">
-                  {formatCurrencySecond(item.dailyValue)}
-                </p>
-              </div>
-              <div className="flex flex-col gap-1 w-1/2">
-                <span className="font-[700] text-xs text-[#091E42]">
-                  Categoria:
-                </span>
-                <p className="text-[#6C6C6C] font-[400] text-sm">
-                  {item.category}
-                </p>
-              </div>
-
-              <div className="flex flex-col gap-1 w-full">
-                <span className="font-[700] text-xs text-[#091E42]">
-                  Local do objeto:
-                </span>
-                <div className="flex gap-2 items-center">
-                  <span className="material-symbols-outlined">location_on</span>
-                  <p className="text-[#6C6C6C] font-[400] text-sm">
-                    {item.neighborhood} - {item.city}
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex flex-col gap-1 w-1/2">
-                <span className="font-[700] text-xs text-[#091E42]">
-                  Proprietário:
-                </span>
-                <p className="text-[#6C6C6C] font-[400] text-sm">
-                  {item.ownerName}
-                </p>
-              </div>
-              <div className="flex flex-col gap-1 w-1/2">
-                <span className="font-[700] text-xs text-[#091E42]">
-                  Contato:
-                </span>
-                <p className="text-[#6C6C6C] font-[400] text-sm">
-                  {item.contact}
-                </p>
-              </div>
-
-              <div className="flex flex-col gap-1 w-full">
-                <span className="font-[500] text-xs text-[#091E42]">
-                  Informações sobre danos:
-                </span>
-                <p className="text-[#6C6C6C] font-[400] text-xs">
-                  {item.damageInformation}
-                </p>
-              </div>
-
-              <hr className="divider mt-2" />
-
-              <div className="h-4 flex items-center px-5">
-                <span
-                  className="font-[800] text-base"
-                  style={{ color: item.statusColor }}
-                >
-                  {item.status}
-                </span>
-              </div>
-
-              <hr className="divider mb-2" />
-            </div>
-            <div className="flex gap-2  items-center">
-              <span className="material-symbols-outlined">add_a_photo</span>
-              <span
-                className="font-[300] text-base cursor-pointer hover:font-[400]"
-                onClick={() => setShowModal(true)}
-              >
-                Registrar Condições
-              </span>
-            </div>
-            <div className="flex gap-2 items-center">
-              <span className="material-symbols-outlined">report</span>
-              <span className="font-[300] text-base cursor-pointer hover:font-[400]">
-                Reportar mau funcionamento
-              </span>
-            </div>
-
-            <div className="w-full flex mt-3 justify-center">
-              <button className="bg-transparent hover:bg-[#606368] transition text-[#606368] hover:text-white border-[#606368] border-[1px] font-bold px-4 rounded">
-                CANCELAR ALUGUEL
-              </button>
-            </div>
-          </div>
+          <ItemCard
+            key={index}
+            item={item}
+            onEdit={() => console.log("Edit", item)}
+            onDelete={() => console.log("Delete", item)}
+            onToggle={() => console.log("Toggle", item)}
+            onRegisterConditions={() => setShowModal(true)}
+          />
         ))}
       </div>
-      <Modal show={showModal} onClose={() => setShowModal(false)} />
+      <Modal
+        show={showModal}
+        onClose={() => setShowModal(false)}
+        getRootProps={getRootProps}
+        getInputProps={getInputProps}
+        formData={formData}
+      />
     </>
   );
 }

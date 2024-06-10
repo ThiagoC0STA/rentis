@@ -1,9 +1,12 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useState } from "react";
 import "./styles.scss";
 import TextFieldCustom from "@/components/TextFieldCustom/TextFieldCustom";
 import DatePickerValue from "@/components/InputData/InputData";
 import SelectBox from "@/components/SelectBox/SelectBox";
 import Image from "next/image";
+import { Accept, useDropzone } from "react-dropzone";
+import ItemCard from "./ItemCard";
 
 const MeusAnunciosContent = () => {
   const [formData, setFormData] = useState({
@@ -25,7 +28,7 @@ const MeusAnunciosContent = () => {
     cep: "",
     complemento: "",
     pontoReferencia: "",
-    fotos: null,
+    fotos: [],
     termosAceitos: false,
   });
 
@@ -36,7 +39,25 @@ const MeusAnunciosContent = () => {
     setFormData({ ...formData, [key]: value });
   };
 
-  const [anuncios, setAnuncios] = useState([
+  const handleImageDrop = (acceptedFiles: any) => {
+    setFormData({
+      ...formData,
+      fotos: acceptedFiles.map((file: any) =>
+        Object.assign(file, {
+          preview: URL.createObjectURL(file),
+        })
+      ),
+    });
+  };
+
+  const { getRootProps, getInputProps } = useDropzone({
+    accept: {
+      "image/*": [],
+    } as Accept,
+    onDrop: handleImageDrop,
+  });
+
+  const [anuncios, setAnuncios] = useState<any>([
     {
       id: 1,
       titulo:
@@ -105,7 +126,7 @@ const MeusAnunciosContent = () => {
 
   const togglePublicado = (id: any) => {
     setAnuncios(
-      anuncios.map((anuncio) =>
+      anuncios.map((anuncio: any) =>
         anuncio.id === id
           ? { ...anuncio, publicado: !anuncio.publicado }
           : anuncio
@@ -126,65 +147,17 @@ const MeusAnunciosContent = () => {
             <h3>Adicionar Novo Anúncio</h3>
           </div>
           <div className="anuncios-grid">
-            {anuncios.map((anuncio) => (
-              <div key={anuncio.id} className="card">
-                <div className="card-content">
-                  <h3>{anuncio.titulo}</h3>
-                  <div className="anuncio-imagem">
-                    <Image
-                      src={anuncio.imagem}
-                      alt="Imagem do anúncio"
-                      height={200}
-                      width={200}
-                    />
-                  </div>
-                  <p className="data">
-                    <span className="material-symbols-outlined">
-                      calendar_today
-                    </span>{" "}
-                    {anuncio.data}
-                  </p>
-                  <p className="disponibilidade">Disponível para aluguel:</p>
-                  <p className="periodo">
-                    {anuncio.disponivelInicio} - {anuncio.disponivelFim}
-                  </p>
-                  <p className="valor-categoria">
-                    <span>Valor diária:</span> {anuncio.valorDiaria}
-                  </p>
-                  <p className="valor-categoria">
-                    <span>Categoria:</span> {anuncio.categoria}
-                  </p>
-                  <p className="local">
-                    <span className="material-symbols-outlined">
-                      location_on
-                    </span>{" "}
-                    {anuncio.local}
-                  </p>
-                  <p className="informacoes">
-                    <span>Informações sobre danos:</span> {anuncio.informacoes}
-                  </p>
-                  <div className="card-actions">
-                    <div className="flex gap-2 items-center">
-                      <button className="edit-button">Editar</button>
-                      <button className="delete-button">Excluir</button>
-                    </div>
-
-                    <label className="switch">
-                      <input
-                        type="checkbox"
-                        checked={anuncio.publicado}
-                        onChange={() => togglePublicado(anuncio.id)}
-                      />
-                      <span
-                        className={`slider ${
-                          anuncio.publicado ? "green" : "red"
-                        }`}
-                      ></span>
-                      {/* {anuncio.publicado ? "Publicado" : "Despublicado"} */}
-                    </label>
-                  </div>
-                </div>
-              </div>
+            {anuncios.map((anuncio: any) => (
+              <ItemCard
+                key={anuncio.id}
+                item={anuncio}
+                onEdit={() => console.log("Edit", anuncio)}
+                onDelete={() => console.log("Delete", anuncio)}
+                onToggle={() => togglePublicado(anuncio.id)}
+                onRegisterConditions={() =>
+                  console.log("Register Conditions", anuncio)
+                }
+              />
             ))}
           </div>
         </div>
@@ -434,8 +407,14 @@ const MeusAnunciosContent = () => {
           <p>Fotos com boa qualidade e nítidas ajudam a alugar mais rápido</p>
           <div className="foto-upload">
             <p>Arquivos máximo de até 15MB</p>
-            <div className="upload-box">
+            <div className="upload-box" {...getRootProps()}>
+              <input {...getInputProps()} />
               <p>Selecione uma foto ou arraste e solte aqui</p>
+              {formData.fotos.map((file: any) => (
+                <div key={file.name}>
+                  <img src={file.preview} alt="Preview" width={200} />
+                </div>
+              ))}
             </div>
           </div>
         </section>
