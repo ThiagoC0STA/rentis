@@ -93,7 +93,7 @@ const CarteiraContent = () => {
         <div className="card w-full shadow-sm !border-none !bg-[#F9FAFA]">
           <h2 className="text-2xl">Dados bancários</h2>
 
-          <div className="flex flex-wrap gap-y-7 pl-4 pr-4 md:pr-20 lg:pr-32 py-8">
+          <div className="flex w-full  flex-wrap gap-y-7 pl-4 pr-4 py-8">
             <div className="w-full flex flex-wrap md:flex-nowrap gap-7">
             <div className="flex w-full gap-7 flex-nowrap">
               <FormControl className="w-full md:flex-1">
@@ -117,7 +117,7 @@ const CarteiraContent = () => {
               </FormControl>
             </div>
 
-              <FormControl className="w-full md:w-1/4">
+              <FormControl className="w-full md:w-1/2">
                 <SelectBox
                   label="Tipo de conta bancaria"
                   options={typeBank}
@@ -165,7 +165,7 @@ const CarteiraContent = () => {
                 </FormControl>
               </div>
 
-              <FormControl className="w-full md:w-1/4">
+              <FormControl className="w-full md:w-1/2">
                 <SelectBox
                   label="Banco"
                   options={banks}
