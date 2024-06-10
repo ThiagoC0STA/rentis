@@ -194,7 +194,8 @@ export default function MeusDadosContent() {
 
           <div className="flex flex-wrap gap-y-7 px-4 py-8">
             <div className="w-full flex flex-wrap md:flex-nowrap gap-7">
-              <FormControl className="w-full md:w-1/3">
+            <div className="flex w-full gap-7 flex-nowrap">
+              <FormControl className="w-full md:flex-1">
                 <TextFieldCustom
                   label="Conta"
                   value={formData.conta}
@@ -204,7 +205,7 @@ export default function MeusDadosContent() {
                 />
               </FormControl>
 
-              <FormControl className="w-full md:w-1/6">
+              <FormControl className="w-full md:w-1/6 max-w-[100px]">
                 <TextFieldCustom
                   label="Digito"
                   value={formData.digitoConta}
@@ -213,6 +214,7 @@ export default function MeusDadosContent() {
                   max="1"
                 />
               </FormControl>
+            </div>
 
               <FormControl className="w-full md:w-1/4">
                 <SelectBox
@@ -239,7 +241,8 @@ export default function MeusDadosContent() {
             </div>
 
             <div className="w-full flex flex-wrap md:flex-nowrap gap-7">
-              <FormControl className="w-full md:w-1/3">
+            <div className="flex w-full gap-7 flex-nowrap">
+              <FormControl className="w-full md:flex-1">
                 <TextFieldCustom
                   label="Agência"
                   value={formData.agencia}
@@ -249,7 +252,7 @@ export default function MeusDadosContent() {
                 />
               </FormControl>
 
-              <FormControl className="w-full md:w-1/6">
+              <FormControl className="w-full md:w-1/6 max-w-[100px]">
                 <TextFieldCustom
                   label="Código"
                   value={formData.digitoAgencia}
@@ -259,6 +262,7 @@ export default function MeusDadosContent() {
                   max="1"
                 />
               </FormControl>
+            </div>
 
               <FormControl className="w-full md:w-1/4">
                 <SelectBox

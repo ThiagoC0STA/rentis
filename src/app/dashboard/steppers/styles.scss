@@ -273,7 +273,7 @@
 }
 
 .new-anuncio-card {
-  background-color: rgba(0, 128, 0, 0.1);
+  background-color: #0080001a;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -539,3 +539,6 @@ input:checked + .slider:before {
   cursor: pointer;
   border-radius: 5px;
 }
+
+
+
